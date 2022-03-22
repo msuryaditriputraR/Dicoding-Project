@@ -1,0 +1,11 @@
+{
+  "name": "open-music-api",
+  "version": "1.0.0",
+  "description": "API for music",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Muh Suryadi Triputra Rahman",
+  "license": "ISC"
+}
