@@ -52,8 +52,6 @@ class AlbumsHandler {
             const album = await this._service.getAlbumById(id);
             const songs = await this._service.getSongsByAlbumId(id);
 
-            console.log(songs);
-
             const response = h.response({
                 status: 'success',
                 data: {
