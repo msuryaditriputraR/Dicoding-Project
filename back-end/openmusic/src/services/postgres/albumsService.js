@@ -31,16 +31,6 @@ class albumsService {
         return result.rows[0].id;
     }
 
-    async getAlbums() {
-        const query = {
-            text: 'SELECT * FROM $1',
-            values: [this._table],
-        };
-
-        const result = await this._pool.query(query);
-        return result.rows.map(mapAlbums);
-    }
-
     async getAlbumById(id) {
         const query = {
             text: 'SELECT * FROM $1 WHERE id = $2',
