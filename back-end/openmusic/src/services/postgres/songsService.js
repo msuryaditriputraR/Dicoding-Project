@@ -44,7 +44,7 @@ class SongsService {
 
     async getSongs() {
         const query = {
-            text: 'SELECT * FROM $1',
+            text: 'SELECT id, title, performer FROM $1',
             values: [this._table],
         };
 
