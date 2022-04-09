@@ -6,7 +6,7 @@ const { mapAlbums } = require('../../utils');
 const NotFoundError = require('../../exceptions/NotFoundError');
 const InvariantError = require('../../exceptions/InvariantError');
 
-class albumsService {
+class AlbumsService {
     constructor() {
         this._pool = new Pool();
         this._table = 'albums';
@@ -75,4 +75,4 @@ class albumsService {
     }
 }
 
-module.exports = albumsService;
+module.exports = AlbumsService;
