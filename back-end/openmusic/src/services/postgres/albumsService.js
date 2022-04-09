@@ -9,7 +9,6 @@ const InvariantError = require('../../exceptions/InvariantError');
 class AlbumsService {
     constructor() {
         this._pool = new Pool();
-        this._table = 'albums';
     }
 
     async addAlbum({ name, year }) {
@@ -18,8 +17,8 @@ class AlbumsService {
         const updatedAt = createdAt;
 
         const query = {
-            text: 'INSERT INTO $1 VALUES($2, $3, $4, $5, $6) RETURNING id',
-            values: [this._table, id, name, year, createdAt, updatedAt],
+            text: 'INSERT INTO albums VALUES($1, $2, $3, $4, $5) RETURNING id',
+            values: [id, name, year, createdAt, updatedAt],
         };
 
         const result = await this._pool.query(query);
@@ -33,8 +32,8 @@ class AlbumsService {
 
     async getAlbumById(id) {
         const query = {
-            text: 'SELECT * FROM $1 WHERE id = $2',
-            values: [this._table, id],
+            text: 'SELECT * FROM albums WHERE id = $1',
+            values: [id],
         };
         const result = await this._pool.query(query);
 
@@ -48,8 +47,8 @@ class AlbumsService {
     async editAlbumById(id, { name, year }) {
         const updatedAt = new Date().toISOString();
         const query = {
-            text: 'UPDATE $1 SET name = $2, year = $3, updated_at = $4 WHERE id = $5 RETURNING id',
-            values: [this._table, name, year, updatedAt, id],
+            text: 'UPDATE albums SET name = $1, year = $2, updated_at = $3 WHERE id = $4 RETURNING id',
+            values: [name, year, updatedAt, id],
         };
 
         const result = await this._pool.query(query);
@@ -63,8 +62,8 @@ class AlbumsService {
 
     async deleteAlbumById(id) {
         const query = {
-            text: 'DELETE FROM $1 WHERE id = $2 RETURNING id',
-            values: [this._table, id],
+            text: 'DELETE FROM albums WHERE id = $1 RETURNING id',
+            values: [id],
         };
 
         const result = await this._pool.query(query);

@@ -9,7 +9,6 @@ const InvariantError = require('../../exceptions/InvariantError');
 class SongsService {
     constructor() {
         this._pool = new Pool();
-        this._table = 'songs';
     }
 
     async addSong({ title, year, genre, performer, duration, albumId }) {
@@ -18,9 +17,8 @@ class SongsService {
         const updatedAt = createdAt;
 
         const query = {
-            text: 'INSERT INTO $1 VALUES($2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id',
+            text: 'INSERT INTO songs VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id',
             values: [
-                this._table,
                 id,
                 title,
                 year,
@@ -43,19 +41,16 @@ class SongsService {
     }
 
     async getSongs() {
-        const query = {
-            text: 'SELECT id, title, performer FROM $1',
-            values: [this._table],
-        };
-
-        const result = await this._pool.query(query);
+        const result = await this._pool.query(
+            'SELECT id, title, performer FROM songs'
+        );
         return result.rows.map(mapSongs);
     }
 
     async getSongById(id) {
         const query = {
-            text: 'SELECT * FROM $1 WHERE id = $2',
-            values: [this._table, id],
+            text: 'SELECT * FROM songs WHERE id = $1',
+            values: [id],
         };
         const result = await this._pool.query(query);
 
@@ -63,7 +58,7 @@ class SongsService {
             throw new NotFoundError('Song tidak ditemukan');
         }
 
-        return result.rows.map(mapAlbums)[0];
+        return result.rows.map(mapSongs)[0];
     }
 
     async editSongById(
@@ -72,9 +67,8 @@ class SongsService {
     ) {
         const updatedAt = new Date().toISOString();
         const query = {
-            text: 'UPDATE $1 SET title = $2, year = $3, genre = $4, performer = $5, duration = $6, album_id = $7, updated_at = $8 WHERE id = $9 RETURNING id',
+            text: 'UPDATE songs SET title = $1, year = $2, genre = $3, performer = $4, duration = $5, album_id = $6, updated_at = $7 WHERE id = $8 RETURNING id',
             values: [
-                this._table,
                 title,
                 year,
                 genre,
@@ -97,8 +91,8 @@ class SongsService {
 
     async deleteSongById(id) {
         const query = {
-            text: 'DELETE FROM $1 WHERE id = $2 RETURNING id',
-            values: [this._table, id],
+            text: 'DELETE FROM songs WHERE id = $1 RETURNING id',
+            values: [id],
         };
 
         const result = await this._pool.query(query);
