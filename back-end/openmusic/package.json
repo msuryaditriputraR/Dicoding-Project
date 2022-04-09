@@ -4,7 +4,8 @@
   "description": "API for music",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon ."
+    "start": "nodemon .",
+    "migrate": "node-pg-migrate"
   },
   "author": "Muh Suryadi Triputra Rahman",
   "license": "ISC",
