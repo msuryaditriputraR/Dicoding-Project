@@ -1,26 +1,4 @@
 exports.up = pgm => {
-    pgm.createTable('albums', {
-        id: {
-            type: 'VARCHAR(50)',
-            primaryKey: true,
-        },
-        name: {
-            type: 'TEXT',
-            notNull: true,
-        },
-        year: {
-            type: 'INTEGER',
-            notNull: true,
-        },
-        created_at: {
-            type: 'TEXT',
-            notNull: true,
-        },
-        updated_at: {
-            type: 'TEXT',
-            notNull: true,
-        },
-    });
     pgm.createTable('songs', {
         id: {
             type: 'VARCHAR(50)',
@@ -49,8 +27,9 @@ exports.up = pgm => {
             type: 'VARCHAR(50)',
         },
         created_at: {
-            type: 'TEXT',
+            type: 'TIMESTAMP',
             notNull: true,
+            default: pgm.func('current_timestamp'),
         },
         updated_at: {
             type: 'TEXT',
@@ -60,6 +39,5 @@ exports.up = pgm => {
 };
 
 exports.down = pgm => {
-    pgm.dropTable('albums');
     pgm.dropTable('songs');
 };

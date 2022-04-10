@@ -11,12 +11,10 @@ class AlbumsHandler {
         this.deleteAlbumByIdHandler = this.deleteAlbumByIdHandler.bind(this);
     }
 
-    async postAlbumHandler(request, h) {
+    async postAlbumHandler({ payload }, h) {
         try {
-            this._validator.validateAlbumPayload(request.payload);
-            const { name = 'untitled', year } = request.payload;
-
-            const albumId = await this._service.addAlbum({ name, year });
+            this._validator.validateAlbumPayload(payload);
+            const albumId = await this._service.addAlbum(payload);
 
             const response = h.response({
                 status: 'success',
@@ -27,14 +25,6 @@ class AlbumsHandler {
             response.code(201);
             return response;
         } catch (error) {
-            if (error instanceof ClientError) {
-                const response = h.response({
-                    status: 'fail',
-                    message: error.message,
-                });
-                response.code(error.statusCode);
-                return response;
-            }
             // Server ERROR!
             const response = h.response({
                 status: 'error',
@@ -52,7 +42,7 @@ class AlbumsHandler {
             const album = await this._service.getAlbumById(id);
             const songs = await this._service.getSongsByAlbumId(id);
 
-            const response = h.response({
+            return {
                 status: 'success',
                 data: {
                     album: {
@@ -60,18 +50,8 @@ class AlbumsHandler {
                         songs,
                     },
                 },
-            });
-            response.code(200);
-            return response;
+            };
         } catch (error) {
-            if (error instanceof ClientError) {
-                const response = h.response({
-                    status: 'fail',
-                    message: error.message,
-                });
-                response.code(error.statusCode);
-                return response;
-            }
             // Server ERROR!
             const response = h.response({
                 status: 'error',
@@ -83,28 +63,17 @@ class AlbumsHandler {
         }
     }
 
-    async putAlbumByIdHandler(request, h) {
+    async putAlbumByIdHandler({ payload, params }, h) {
         try {
-            this._validator.validateAlbumPayload(request.payload);
-            const { id } = request.params;
-            await this._service.editAlbumById(id, request.payload);
+            this._validator.validateAlbumPayload(payload);
+            const { id } = params;
+            await this._service.editAlbumById(id, payload);
 
-            const response = h.response({
+            return {
                 status: 'success',
                 message: 'Album berhasil diedit',
-            });
-            response.code(200);
-            return response;
+            };
         } catch (error) {
-            if (error instanceof ClientError) {
-                const response = h.response({
-                    status: 'fail',
-                    message: error.message,
-                });
-                response.code(error.statusCode);
-                return response;
-            }
-
             // Server ERROR!
             const response = h.response({
                 status: 'error',
@@ -116,26 +85,15 @@ class AlbumsHandler {
         }
     }
 
-    async deleteAlbumByIdHandler(request, h) {
+    async deleteAlbumByIdHandler({ params }, h) {
         try {
-            const { id } = request.params;
+            const { id } = params;
             await this._service.deleteAlbumById(id);
-            const response = h.response({
+            return {
                 status: 'success',
                 message: 'Album berhasil dihapus',
-            });
-            response.code(200);
-            return response;
+            };
         } catch (error) {
-            if (error instanceof ClientError) {
-                const response = h.response({
-                    status: 'fail',
-                    message: error.message,
-                });
-                response.code(error.statusCode);
-                return response;
-            }
-
             // Server ERROR!
             const response = h.response({
                 status: 'error',
