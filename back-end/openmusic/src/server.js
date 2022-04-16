@@ -1,11 +1,12 @@
 require('dotenv').config();
-
 const Hapi = require('@hapi/hapi');
+
 const songs = require('./api/songs');
 const albums = require('./api/albums');
 const AlbumsService = require('./services/postgres/albumsService');
 const SongsService = require('./services/postgres/songsService');
 const MusicValidator = require('./validator/music');
+const ClientError = require('./exceptions/ClientError');
 
 const init = async () => {
     const server = Hapi.server({
@@ -43,11 +44,10 @@ const init = async () => {
             });
             newResponse.code(response.statusCode);
             return newResponse;
-    }
+        }
 
-    return response.continue || response;
-});
-
+        return response.continue || response;
+    });
 
     await server.start();
     console.log(`Server berjalan di ${server.info.uri}`);
