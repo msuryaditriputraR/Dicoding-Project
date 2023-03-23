@@ -25,7 +25,7 @@ class SongsHandler {
         return response;
     }
 
-    async getSongsHandler({ query }, h) {
+    async getSongsHandler({ query }) {
         const songs = await this._service.getSongs(query);
 
         return {
@@ -36,7 +36,7 @@ class SongsHandler {
         };
     }
 
-    async getSongByIdHandler({ params }, h) {
+    async getSongByIdHandler({ params }) {
         const { id } = params;
         const song = await this._service.getSongById(id);
 
@@ -48,7 +48,7 @@ class SongsHandler {
         };
     }
 
-    async putSongByIdHandler({ payload, params }, h) {
+    async putSongByIdHandler({ payload, params }) {
         this._validator.validateSongPayload(payload);
         const { id } = params;
         await this._service.editSongById(id, payload);
@@ -59,7 +59,7 @@ class SongsHandler {
         };
     }
 
-    async deleteSongByIdHandler({ params }, h) {
+    async deleteSongByIdHandler({ params }) {
         const { id } = params;
         await this._service.deleteSongById(id);
         return {
