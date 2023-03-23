@@ -5,12 +5,13 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon .",
-    "migrate": "node-pg-migrate"
+    "migrate": "node-pg-migrate",
+    "lint": "eslint . --ext .js --ignore-pattern node_modules/"
   },
   "author": "Muh Suryadi Triputra Rahman",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^8.11.0",
+    "eslint": "^8.36.0",
     "nodemon": "^2.0.15",
     "prettier": "^2.6.0"
   },
