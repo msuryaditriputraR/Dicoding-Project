@@ -1,0 +1,313 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Icons Bootstrap */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
+
+:root {
+    --main-color: #5100d2;
+    --green-color: #34b334;
+    --red-color: #ff0000;
+    --yellow-color: #ffbb00;
+    --grey-color: #888888;
+    --text-green: #22811c;
+
+}
+
+/* resetcss */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+body {
+    font-family: Poppins, sans-serif;
+}
+
+.mr-3 {
+    margin-right: .3rem;
+}
+
+.ml-3 {
+    margin-left: .3rem;
+}
+
+/* Header */
+header {
+    background-color: var(--main-color);
+    text-align: center;
+    /* position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%; */
+}
+
+header #title {
+    color: white;
+    padding: 15px;
+}
+
+/* Main */
+
+.container {
+    margin: 50px auto;
+    width: 80%;
+}
+
+#top,
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+#right {
+    display: flex;
+}
+
+#main-content {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 350px);
+    grid-gap: 20px;
+}
+
+.d-block {
+    display: block;
+}
+
+/* Button Style */
+.btn {
+    border: 0px;
+    padding: 8px 15px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-main {
+    background-color: var(--main-color);
+}
+
+.btn-yellow {
+    background-color: var(--yellow-color);
+}
+
+.btn-green {
+    background-color: var(--green-color);
+}
+
+.btn-red {
+    background-color: var(--red-color);
+}
+
+.btn-grey {
+    background-color: var(--grey-color);
+}
+
+/* Icons style */
+.bi-plus-lg,
+.bi-funnel-fill {
+    font-size: 18px;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
+/*  Menu Dropdown Filter */
+.dropdown-filter {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.dropdown-filter .dropdown-filter-menu {
+    position: absolute;
+    z-index: 1;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, .2);
+    width: 200px;
+    padding: 12px;
+    margin-top: 5px;
+    border-radius: 5px;
+    display: none;
+}
+
+.dropdown-filter .dropdown-filter-menu.show {
+    display: block;
+}
+
+.dropdown-filter .dropdown-filter-menu .menu {
+    font-size: .9rem;
+}
+
+.dropdown-filter .dropdown-filter-menu .menu label {
+    margin-left: 5px;
+}
+
+.dropdown-filter .dropdown-filter-menu .menu label,
+.dropdown-filter .dropdown-filter-menu .menu input {
+    cursor: pointer;
+}
+
+/* Input Search */
+.search {
+    border: 1px solid rgb(202, 202, 202);
+    margin-right: 15px;
+    border-radius: 5px;
+    padding: 0 10px;
+    line-height: 2rem;
+    width: 250px;
+}
+
+.search .input-search {
+    border: 0px;
+    padding: 0 5px;
+    cursor: text;
+}
+
+
+
+/* card */
+.card {
+    border: 1px solid #ececec;
+    border-radius: 5px;
+    box-shadow: 0px 3px 2px rgba(180, 180, 180, 0.4);
+    padding: 20px;
+}
+
+.text-title {
+    color: var(--main-color);
+}
+
+.text-title::first-letter {
+    text-transform: uppercase;
+
+}
+
+.text-subtitle {
+    color: #5e5e5e;
+    font-weight: 300;
+}
+
+.text-subtitle::first-letter {
+    text-transform: uppercase;
+}
+
+.text-isCompleted {
+    font-size: .87em;
+    margin-top: 5px;
+    font-weight: 300;
+}
+
+.hl {
+    background-color: yellow;
+}
+
+.uncompleted {
+    color: #838383;
+}
+
+.completed {
+    color: var(--text-green);
+    font-weight: bold;
+}
+
+.card-footer {
+    margin-top: 30px;
+}
+
+/* modal */
+.modal {
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    position: fixed;
+    background-color: rgba(70, 70, 70, 0.8);
+    display: none;
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal.show .modal-content {
+    animation: modal .5s;
+}
+
+.modal .modal-content {
+    background-color: white;
+    width: 450px;
+    margin: 120px auto;
+    border: 1px solid #ececec;
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.modal-content .header-content {
+    text-align: center;
+    position: relative;
+}
+
+.modal-content .header-content .title-header {
+    color: var(--main-color);
+}
+
+.modal-content .header-content .btn-closed {
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 1.4em;
+    color: white;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.modal-content .main-content {
+    margin: 30px 0;
+}
+
+.modal-content .main-content .form-control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 20px 15px 0;
+}
+
+.modal-content .main-content .form-control input[type=text] {
+    flex: 0 0 70%;
+    border: 1px solid rgb(202, 202, 202);
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-weight: 300;
+}
+
+.modal-content .main-content .form-control:last-child {
+    justify-content: start;
+}
+
+.modal-content .main-content .form-control:last-child label {
+    text-transform: capitalize;
+    margin-right: 5px;
+}
+
+.modal-content .footer-content {
+    text-align: center;
+}
+
+/* animation */
+@keyframes modal {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}
