@@ -8,7 +8,13 @@ const ThemeToggle = () => {
         document.documentElement.classList[isDark ? "add" : "remove"]("dark");
     }, [isDark]);
     return (
-        <div onClick={() => setIsDark(!isDark)}>
+        <div
+            onClick={() => setIsDark(!isDark)}
+            className="cursor-pointer text-xl hover:text-green-500"
+            title="Theme Button"
+            aria-label="Theme Button"
+            role="button"
+        >
             {!isDark ? <BiMoon /> : <BiSun />}
         </div>
     );
