@@ -7,7 +7,9 @@ const NoteCard = ({ note, handleArchive, handleDelete }) => {
 
     return (
         <article className="border border-slate-300 flex flex-col rounded-md shadow-md py-4 px-6">
-            <h3 className="font-semibold text-xl text-green-500">{title}</h3>
+            <h3 className="font-semibold text-xl text-green-500 break-words">
+                {title}
+            </h3>
             <span className="text-slate-500 text-sm">
                 {showFormattedDate(createdAt)}
             </span>
