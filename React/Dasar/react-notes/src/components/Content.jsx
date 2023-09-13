@@ -14,6 +14,12 @@ export const Content = ({ isArchivePage }) => {
         setArchive(data.filter((d) => d.archived));
     }, [data]);
 
+    const handleArchive = (id) => {
+        const index = data.findIndex((d) => d.id === id);
+        data[index].archived = !data[index].archived;
+        setData([...data]);
+    };
+
     return (
         <section className="py-8">
             <div className="container">
@@ -41,15 +47,23 @@ export const Content = ({ isArchivePage }) => {
                 <div className="grid grid-cols-3 gap-6 mt-10 items-start">
                     {isArchivePage ? (
                         archive.length > 0 ? (
-                            archive.map((note) => {
-                                <NoteCard note={note} key={note.id} />;
-                            })
+                            archive.map((note) => (
+                                <NoteCard
+                                    note={note}
+                                    key={note.id}
+                                    handleArchive={handleArchive}
+                                />
+                            ))
                         ) : (
                             <EmptyData text="Archive is Empty" />
                         )
                     ) : notes.length > 0 ? (
                         notes.map((note) => (
-                            <NoteCard note={note} key={note.id} />
+                            <NoteCard
+                                note={note}
+                                key={note.id}
+                                handleArchive={handleArchive}
+                            />
                         ))
                     ) : (
                         <EmptyData text="No Notes Yet" />
