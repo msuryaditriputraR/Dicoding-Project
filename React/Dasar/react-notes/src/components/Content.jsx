@@ -18,9 +18,17 @@ export const Content = ({ isArchivePage }) => {
     });
 
     useEffect(() => {
-        setNotes(data.filter((d) => !d.archived));
-        setArchive(data.filter((d) => d.archived));
+        setNotes(handleSortLatest(data.filter((d) => !d.archived)));
+        setArchive(handleSortLatest(data.filter((d) => d.archived)));
     }, [data]);
+
+    const handleSortLatest = (arr) =>
+        arr.sort((a, b) => {
+            const dateA = new Date(a.updatedAt);
+            const dateB = new Date(b.updatedAt);
+
+            return +dateB - +dateA;
+        });
 
     const handleArchive = (id) => {
         const index = data.findIndex((d) => d.id === id);
