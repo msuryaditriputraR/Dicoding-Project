@@ -4,7 +4,7 @@ import ThemeToggle from "./ThemeToggle";
 
 const Header = ({ handleSwitchPage, isArchivePage }) => {
     return (
-        <header className="fixed bg-white left-0 px-5 top-0 z-50 w-full shadow-sm">
+        <header className="fixed bg-white left-0 px-5 top-0 z-40 w-full shadow-sm">
             <div className="container flex justify-between items-center flex-wrap lg:flex-nowrap h-28 lg:h-16">
                 <h1 href="#" className="text-xl font-semibold">
                     NOTES
