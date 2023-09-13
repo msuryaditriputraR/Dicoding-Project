@@ -13,7 +13,7 @@ const NoteCard = ({ note, handleArchive, handleDelete }) => {
             <span className="text-slate-500 text-sm">
                 {showFormattedDate(createdAt)}
             </span>
-            <p className="border-t my-2 py-2 text-slate-600 leading-[1.6]">
+            <p className="border-t my-2 py-2 text-slate-600 leading-[1.6] break-words">
                 {body}
             </p>
             <div className="mt-auto flex justify-center gap-x-3 text-xl">
