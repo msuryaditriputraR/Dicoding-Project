@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiPlus, BiNote, BiArchive } from "react-icons/bi";
 import getInitialData from "../utils/getInitialData";
 import NoteCard from "./NoteCard";
 import EmptyData from "./EmptyData";
 
 export const Content = ({ isArchivePage }) => {
-    const [notes, setNotes] = useState(getInitialData() || []);
+    const [data, setData] = useState(getInitialData() || []);
+    const [notes, setNotes] = useState([]);
     const [archive, setArchive] = useState([]);
+
+    useEffect(() => {
+        setNotes(data.filter((d) => !d.archived));
+        setArchive(data.filter((d) => d.archived));
+    }, [data]);
 
     return (
         <section className="py-8">
