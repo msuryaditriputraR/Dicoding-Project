@@ -1,4 +1,11 @@
+import { useState } from "react";
+
 const ModalData = () => {
+    const [value, setValue] = useState({
+        title: "",
+        note: "",
+    });
+
     return (
         <div className="fixed left-0 top-0 right-0 bottom-0 backdrop-blur-md bg-black/30 grid place-items-center z-50">
             <article className="bg-white p-8 border border-slate-300 rounded-xl shadow-md min-w-[560px]">
@@ -17,6 +24,13 @@ const ModalData = () => {
                                 placeholder="Note Title"
                                 id="title"
                                 className="border-2 border-slate-300 p-3 outline-green-500 shadow-sm rounded-md"
+                                value={value.title}
+                                onInput={(e) => {
+                                    setValue({
+                                        ...value,
+                                        [e.target.id]: e.target.value,
+                                    });
+                                }}
                                 required
                             />
                         </div>
@@ -33,6 +47,13 @@ const ModalData = () => {
                                 rows="10"
                                 placeholder="Write your note here..."
                                 className="border-2 border-slate-300 p-3 outline-green-500 shadow-sm rounded-md"
+                                value={value.note}
+                                onInput={(e) =>
+                                    setValue({
+                                        ...value,
+                                        [e.target.id]: e.target.value,
+                                    })
+                                }
                                 required
                             ></textarea>
                         </div>
