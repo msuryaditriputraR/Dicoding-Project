@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { BiX } from "react-icons/bi";
 
-const ModalData = ({ handleAdd }) => {
+const ModalData = ({ handleAdd, handleClose }) => {
     const [value, setValue] = useState({
         title: "",
         body: "",
@@ -8,7 +9,15 @@ const ModalData = ({ handleAdd }) => {
 
     return (
         <div className="fixed left-0 top-0 right-0 bottom-0 backdrop-blur-md bg-black/30 grid place-items-center z-50">
-            <article className="bg-white p-8 border border-slate-300 rounded-xl shadow-md min-w-[560px]">
+            <article className="relative bg-white p-8 border border-slate-300 rounded-xl shadow-md min-w-[560px]">
+                <button
+                    className="absolute w-8 h-8 bg-red-500 text-white text-2xl rounded-full flex items-center justify-center right-5 top-5"
+                    title="Close Modal"
+                    aria-label="Close Modal"
+                    onClick={handleClose}
+                >
+                    <BiX />
+                </button>
                 <h2 className="text-2xl font-semibold text-center">Add Note</h2>
                 <form
                     onSubmit={(e) => {

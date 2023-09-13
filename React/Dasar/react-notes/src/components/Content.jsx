@@ -128,7 +128,12 @@ export const Content = ({ isArchivePage }) => {
                         handleDelete={handleDelete}
                     />
                 )}
-                {openModal.modalAdd && <ModalData handleAdd={handleAdd} />}
+                {openModal.modalAdd && (
+                    <ModalData
+                        handleAdd={handleAdd}
+                        handleClose={() => handleModal("modalAdd", false)}
+                    />
+                )}
             </div>
         </section>
     );
