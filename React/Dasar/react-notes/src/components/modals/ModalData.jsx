@@ -13,12 +13,23 @@ const ModalData = () => {
                 <form>
                     <div className="my-6">
                         <div className="flex flex-col gap-y-2 mb-4">
-                            <label
-                                htmlFor="title"
-                                className="font-medium text-lg"
-                            >
-                                Title
-                            </label>
+                            <div className="flex justify-between items-center">
+                                <label
+                                    htmlFor="title"
+                                    className="font-medium text-lg"
+                                >
+                                    Title
+                                </label>
+                                <p
+                                    className={`text-sm ${
+                                        value.title.length === 50
+                                            ? "text-red-500"
+                                            : "text-black"
+                                    }`}
+                                >
+                                    Character : {50 - value.title.length}
+                                </p>
+                            </div>
                             <input
                                 type="text"
                                 placeholder="Note Title"
@@ -26,10 +37,12 @@ const ModalData = () => {
                                 className="border-2 border-slate-300 p-3 outline-green-500 shadow-sm rounded-md"
                                 value={value.title}
                                 onInput={(e) => {
-                                    setValue({
-                                        ...value,
-                                        [e.target.id]: e.target.value,
-                                    });
+                                    if (e.target.value.length <= 50) {
+                                        setValue({
+                                            ...value,
+                                            [e.target.id]: e.target.value,
+                                        });
+                                    }
                                 }}
                                 required
                             />
