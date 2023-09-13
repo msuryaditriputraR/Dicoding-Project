@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BsSearchHeart } from "react-icons/bs";
 
-const Search = () => {
+const Search = ({ placeholder }) => {
     const [keyword, setKeyword] = useState("");
     const handleSearch = (e) => setKeyword(e.target.value);
 
@@ -13,7 +13,7 @@ const Search = () => {
         >
             <input
                 type="text"
-                placeholder="Search Notes"
+                placeholder={"Search " + placeholder}
                 className="w-full bg-transparent caret-green-500 outline-none"
                 value={keyword}
                 onChange={handleSearch}
