@@ -4,6 +4,7 @@ import getInitialData from "../utils/getInitialData";
 import NoteCard from "./NoteCard";
 import EmptyData from "./EmptyData";
 import ModalDelete from "./modals/modalDelete";
+import ModalData from "./modals/ModalData";
 
 export const Content = ({ isArchivePage }) => {
     const [data, setData] = useState(getInitialData() || []);
@@ -58,7 +59,10 @@ export const Content = ({ isArchivePage }) => {
                     </h2>
 
                     {!isArchivePage && (
-                        <button className="inline-flex items-center gap-x-1 bg-green-500 px-3 py-2 rounded-md text-white shadow-md">
+                        <button
+                            className="inline-flex items-center gap-x-1 bg-green-500 px-3 py-2 rounded-md text-white shadow-md"
+                            onClick={() => handleModal("modalAdd", true)}
+                        >
                             <BiPlus className="text-xl" /> Add Note
                         </button>
                     )}
@@ -102,6 +106,7 @@ export const Content = ({ isArchivePage }) => {
                         handleDelete={handleDelete}
                     />
                 )}
+                {openModal.modalAdd && <ModalData />}
             </div>
         </section>
     );
