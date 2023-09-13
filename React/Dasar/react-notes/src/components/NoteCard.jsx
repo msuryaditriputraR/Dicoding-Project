@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { BiArchive, BiTrash, BiEdit } from "react-icons/bi";
 import showFormattedDate from "../utils/showFormattedDate";
 
