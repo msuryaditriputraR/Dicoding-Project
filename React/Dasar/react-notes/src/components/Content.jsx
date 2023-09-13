@@ -40,6 +40,20 @@ export const Content = ({ isArchivePage }) => {
         });
     };
 
+    const handleAdd = ({ title, body }) => {
+        const newNote = {
+            id: +new Date(),
+            title,
+            body,
+            archived: false,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        };
+
+        setData([...data, newNote]);
+        handleModal("modalAdd", false);
+    };
+
     return (
         <section className="py-8">
             <div className="container">
@@ -106,7 +120,7 @@ export const Content = ({ isArchivePage }) => {
                         handleDelete={handleDelete}
                     />
                 )}
-                {openModal.modalAdd && <ModalData />}
+                {openModal.modalAdd && <ModalData handleAdd={handleAdd} />}
             </div>
         </section>
     );

@@ -1,16 +1,21 @@
 import { useState } from "react";
 
-const ModalData = () => {
+const ModalData = ({ handleAdd }) => {
     const [value, setValue] = useState({
         title: "",
-        note: "",
+        body: "",
     });
 
     return (
         <div className="fixed left-0 top-0 right-0 bottom-0 backdrop-blur-md bg-black/30 grid place-items-center z-50">
             <article className="bg-white p-8 border border-slate-300 rounded-xl shadow-md min-w-[560px]">
                 <h2 className="text-2xl font-semibold text-center">Add Note</h2>
-                <form>
+                <form
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        handleAdd(value);
+                    }}
+                >
                     <div className="my-6">
                         <div className="flex flex-col gap-y-2 mb-4">
                             <div className="flex justify-between items-center">
@@ -49,13 +54,13 @@ const ModalData = () => {
                         </div>
                         <div className="flex flex-col gap-y-2">
                             <label
-                                htmlFor="note"
+                                htmlFor="body"
                                 className="font-medium text-lg"
                             >
                                 Note
                             </label>
                             <textarea
-                                id="note"
+                                id="body"
                                 cols="30"
                                 rows="10"
                                 placeholder="Write your note here..."
