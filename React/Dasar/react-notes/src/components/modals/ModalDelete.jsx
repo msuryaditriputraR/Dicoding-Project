@@ -1,6 +1,6 @@
 const ModalDelete = ({ handleClose, handleDelete }) => {
     return (
-        <div className="fixed left-0 top-0 right-0 bottom-0 backdrop-blur-md bg-black/30 grid place-items-center">
+        <div className="fixed left-0 top-0 right-0 bottom-0 backdrop-blur-md bg-black/30 grid place-items-center z-50">
             <article className="bg-white p-10 border border-slate-300 rounded-xl shadow-md text-center">
                 <h2 className="text-xl mb-8">
                     Are you sure delete this note ?
