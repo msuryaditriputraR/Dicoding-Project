@@ -3,7 +3,7 @@ import { BiArchive, BiTrash, BiEdit } from "react-icons/bi";
 import showFormattedDate from "../utils/showFormattedDate";
 
 const NoteCard = ({ note, handleArchive, handleDelete }) => {
-    const { id, title, body, createdAt, archived } = note;
+    const { id, title, body, updatedAt, archived } = note;
 
     return (
         <article className="border border-slate-300 flex flex-col rounded-md shadow-md py-4 px-6">
@@ -11,7 +11,7 @@ const NoteCard = ({ note, handleArchive, handleDelete }) => {
                 {title}
             </h3>
             <span className="text-slate-500 text-sm">
-                {showFormattedDate(createdAt)}
+                {showFormattedDate(updatedAt)}
             </span>
             <p className="border-t my-2 py-2 text-slate-600 leading-[1.6] break-words">
                 {body}
