@@ -3,11 +3,18 @@ import { BiPlus, BiNote, BiArchive } from "react-icons/bi";
 import getInitialData from "../utils/getInitialData";
 import NoteCard from "./NoteCard";
 import EmptyData from "./EmptyData";
+import ModalDelete from "./modals/modalDelete";
 
 export const Content = ({ isArchivePage }) => {
     const [data, setData] = useState(getInitialData() || []);
     const [notes, setNotes] = useState([]);
     const [archive, setArchive] = useState([]);
+    const [deleteId, setDeleteId] = useState();
+    const [openModal, setOpenModal] = useState({
+        modalAdd: false,
+        modalEdit: false,
+        modalDelete: false,
+    });
 
     useEffect(() => {
         setNotes(data.filter((d) => !d.archived));
@@ -18,6 +25,18 @@ export const Content = ({ isArchivePage }) => {
         const index = data.findIndex((d) => d.id === id);
         data[index].archived = !data[index].archived;
         setData([...data]);
+    };
+
+    const handleDelete = () => {
+        setData(data.filter(({ id }) => id !== deleteId));
+        handleModal("modalDelete", false);
+    };
+
+    const handleModal = (modal, isOpen) => {
+        setOpenModal({
+            ...openModal,
+            [modal]: isOpen,
+        });
     };
 
     return (
@@ -52,6 +71,10 @@ export const Content = ({ isArchivePage }) => {
                                     note={note}
                                     key={note.id}
                                     handleArchive={handleArchive}
+                                    handleDelete={() => {
+                                        handleModal("modalDelete", true);
+                                        setDeleteId(note.id);
+                                    }}
                                 />
                             ))
                         ) : (
@@ -63,12 +86,22 @@ export const Content = ({ isArchivePage }) => {
                                 note={note}
                                 key={note.id}
                                 handleArchive={handleArchive}
+                                handleDelete={() => {
+                                    handleModal("modalDelete", true);
+                                    setDeleteId(note.id);
+                                }}
                             />
                         ))
                     ) : (
                         <EmptyData text="No Notes Yet" />
                     )}
                 </div>
+                {openModal.modalDelete && (
+                    <ModalDelete
+                        handleClose={() => handleModal("modalDelete", false)}
+                        handleDelete={handleDelete}
+                    />
+                )}
             </div>
         </section>
     );

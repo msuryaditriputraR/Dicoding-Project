@@ -2,7 +2,7 @@ import { RiInboxUnarchiveLine } from "react-icons/ri";
 import { BiArchive, BiTrash, BiEdit } from "react-icons/bi";
 import showFormattedDate from "../utils/showFormattedDate";
 
-const NoteCard = ({ note, handleArchive }) => {
+const NoteCard = ({ note, handleArchive, handleDelete }) => {
     const { id, title, body, createdAt, archived } = note;
 
     return (
@@ -34,6 +34,7 @@ const NoteCard = ({ note, handleArchive }) => {
                     className="w-[40px] h-[40px] flex items-center justify-center rounded-full text-white bg-red-500 shadow-md"
                     aria-label="Delete Note"
                     title="Delete Note"
+                    onClick={handleDelete}
                 >
                     <BiTrash />
                 </button>
