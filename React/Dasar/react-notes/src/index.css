@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    @apply dark:bg-[#141414] dark:text-white transition-colors;
+}
+
 .container {
     @apply max-w-[1100px]  lg:mx-auto;
 }

@@ -11,10 +11,10 @@ const NoteCard = ({ note, handleArchive, handleDelete, handleEdit }) => {
             <h3 className="font-semibold text-lg sm:text-xl text-green-500 break-words">
                 {title}
             </h3>
-            <span className="text-slate-500 text-xs sm:text-sm">
+            <span className="text-slate-500 dark:text-slate-200 text-xs sm:text-sm">
                 {showFormattedDate(updatedAt)}
             </span>
-            <p className="border-t my-2 py-2 text-slate-600 text-sm sm:text-base leading-[1.6] break-words">
+            <p className="border-t my-2 py-2 text-slate-600 text-sm sm:text-base dark:text-slate-300 leading-[1.6] break-words">
                 {body}
             </p>
             <div className="mt-auto flex justify-center gap-x-3 sm:text-xl">
