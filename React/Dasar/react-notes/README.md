@@ -1,8 +1,45 @@
-# React + Vite
+# Submission Dicoding : React Dasar
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is my Submission project from ["Belajar Membuat Aplikasi Web dengan React"](https://www.dicoding.com/academies/403/) by [Dicoding](https://www.dicoding.com/) 
 
-Currently, two official plugins are available:
+## FEATURED
+1. Add New Note
+2. Edit Note
+3. Delete Note
+4. Archive & Unarchive Note
+5. Search Note
+6. Responsive Design
+7. Dark Mode
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## What I Use
+  - [React](https://react.dev/)
+  - [Vite](https://vitejs.dev/)
+  - [Eslint](https://eslint.org/)
+  - [Tailwind](https://tailwindcss.com/)
+  - [React-Icons](https://react-icons.github.io/react-icons/)
+     
+## How to Run Locally
+
+1. Clone This Project
+2. Open Project Directory
+   ```
+   cd react-notes
+   ```
+3. Install Depedencies
+   ```
+   npm install
+   ```
+4. Run Dev
+   ```
+   npm run dev
+   ```
+5. Open the project on your web browsers
+   ```
+   http://localhost:5173/
+   ```
+6. Happy Coding ☕
+
+## 
+Feel Free to leave feedback, All Feedback is really appreciated 😊
+
+Find me on [Github](https://github.com/msuryaditriputraR/)
