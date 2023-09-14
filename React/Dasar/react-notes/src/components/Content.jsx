@@ -6,10 +6,11 @@ import EmptyData from "./EmptyData";
 import ModalDelete from "./modals/modalDelete";
 import ModalData from "./modals/ModalData";
 
-export const Content = ({ isArchivePage }) => {
+export const Content = ({ isArchivePage, keyword }) => {
     const [data, setData] = useState(getInitialData() || []);
     const [notes, setNotes] = useState([]);
     const [archive, setArchive] = useState([]);
+    const [searchResult, setSearchResult] = useState([]);
     const [deleteId, setDeleteId] = useState();
     const [editId, setEditId] = useState();
     const [openModal, setOpenModal] = useState({
@@ -22,6 +23,21 @@ export const Content = ({ isArchivePage }) => {
         setNotes(handleSortLatest(data.filter((d) => !d.archived)));
         setArchive(handleSortLatest(data.filter((d) => d.archived)));
     }, [data]);
+
+    useEffect(() => {
+        if (keyword) {
+            const regex = new RegExp(keyword, "ig");
+
+            let result;
+            if (isArchivePage) {
+                result = archive.filter((d) => d.title.match(regex));
+            } else {
+                result = notes.filter((d) => d.title.match(regex));
+            }
+
+            setSearchResult(handleSortLatest(result));
+        }
+    }, [keyword, archive, notes, isArchivePage]);
 
     const handleSortLatest = (arr) =>
         arr.sort((a, b) => {
@@ -111,9 +127,30 @@ export const Content = ({ isArchivePage }) => {
                     )}
                 </div>
                 <div className="grid grid-cols-3 gap-6 mt-10 items-start">
-                    {isArchivePage ? (
-                        archive.length > 0 ? (
-                            archive.map((note) => (
+                    {!keyword ? (
+                        isArchivePage ? (
+                            archive.length > 0 ? (
+                                archive.map((note) => (
+                                    <NoteCard
+                                        note={note}
+                                        key={note.id}
+                                        handleArchive={handleArchive}
+                                        handleDelete={() => {
+                                            handleModal("modalDelete", true);
+                                            setDeleteId(note.id);
+                                        }}
+                                        handleEdit={() => {
+                                            handleModal("modalData", true);
+                                            setIsEdit(true);
+                                            setEditId(note.id);
+                                        }}
+                                    />
+                                ))
+                            ) : (
+                                <EmptyData text="Archive is Empty" />
+                            )
+                        ) : notes.length > 0 ? (
+                            notes.map((note) => (
                                 <NoteCard
                                     note={note}
                                     key={note.id}
@@ -130,10 +167,10 @@ export const Content = ({ isArchivePage }) => {
                                 />
                             ))
                         ) : (
-                            <EmptyData text="Archive is Empty" />
+                            <EmptyData text="No Notes Yet" />
                         )
-                    ) : notes.length > 0 ? (
-                        notes.map((note) => (
+                    ) : searchResult.length > 0 ? (
+                        searchResult.map((note) => (
                             <NoteCard
                                 note={note}
                                 key={note.id}
@@ -150,7 +187,11 @@ export const Content = ({ isArchivePage }) => {
                             />
                         ))
                     ) : (
-                        <EmptyData text="No Notes Yet" />
+                        <EmptyData
+                            text={`${
+                                isArchivePage ? "Archive" : "Note"
+                            } with title ${keyword} Not Found`}
+                        />
                     )}
                 </div>
                 {openModal.modalDelete && (

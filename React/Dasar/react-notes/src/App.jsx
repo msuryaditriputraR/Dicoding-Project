@@ -19,7 +19,7 @@ function App() {
                 handleSearch={handleSearch}
             />
             <main className="mt-28 lg:mt-16">
-                <Content isArchivePage={isArchivePage} />
+                <Content isArchivePage={isArchivePage} keyword={keyword} />
             </main>
             <Footer />
         </>
