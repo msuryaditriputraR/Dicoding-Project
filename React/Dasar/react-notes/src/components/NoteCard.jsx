@@ -1,6 +1,7 @@
 import { RiInboxUnarchiveLine } from "react-icons/ri";
 import { BiArchive, BiTrash, BiEdit } from "react-icons/bi";
 import showFormattedDate from "../utils/showFormattedDate";
+import Button from "./Button";
 
 const NoteCard = ({ note, handleArchive, handleDelete, handleEdit }) => {
     const { id, title, body, updatedAt, archived } = note;
@@ -17,30 +18,27 @@ const NoteCard = ({ note, handleArchive, handleDelete, handleEdit }) => {
                 {body}
             </p>
             <div className="mt-auto flex justify-center gap-x-3 text-xl">
-                <button
-                    className="w-[40px] h-[40px] flex items-center justify-center rounded-full text-white bg-emerald-500 shadow-md"
-                    aria-label={(archived ? "Un" : "") + "Archive Note"}
-                    title={(archived ? "Un" : "") + "Archive Note"}
-                    onClick={() => handleArchive(id)}
+                <Button
+                    click={() => handleArchive(id)}
+                    ttl={(archived ? "Un" : "") + "Archive Note"}
+                    bg={"bg-emerald-500"}
                 >
                     {!archived ? <BiArchive /> : <RiInboxUnarchiveLine />}
-                </button>
-                <button
-                    className="w-[40px] h-[40px] flex items-center justify-center rounded-full text-white bg-yellow-500 shadow-md"
-                    aria-label="Edit Note"
-                    title="Edit Note"
-                    onClick={handleEdit}
+                </Button>
+                <Button
+                    click={handleEdit}
+                    ttl={"Edit Note"}
+                    bg={"bg-yellow-500"}
                 >
                     <BiEdit />
-                </button>
-                <button
-                    className="w-[40px] h-[40px] flex items-center justify-center rounded-full text-white bg-red-500 shadow-md"
-                    aria-label="Delete Note"
-                    title="Delete Note"
-                    onClick={handleDelete}
+                </Button>
+                <Button
+                    click={handleDelete}
+                    ttl={"Delete Note"}
+                    bg={"bg-red-500"}
                 >
                     <BiTrash />
-                </button>
+                </Button>
             </div>
         </article>
     );
