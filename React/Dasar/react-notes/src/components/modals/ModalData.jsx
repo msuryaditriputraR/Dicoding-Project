@@ -1,11 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiX } from "react-icons/bi";
 
-const ModalData = ({ handleAdd, handleClose, isEdit, handleEdit }) => {
+const ModalData = ({ handleAdd, handleClose, isEdit, handleEdit, data }) => {
     const [value, setValue] = useState({
         title: "",
         body: "",
     });
+
+    useEffect(() => {
+        if (isEdit) {
+            const initValEdit = data();
+            setValue(initValEdit);
+        }
+    }, [isEdit, data]);
 
     return (
         <div className="fixed left-0 top-0 right-0 bottom-0 backdrop-blur-md bg-black/30 grid place-items-center z-50">
@@ -24,7 +31,7 @@ const ModalData = ({ handleAdd, handleClose, isEdit, handleEdit }) => {
                 <form
                     onSubmit={(e) => {
                         e.preventDefault();
-                        isEdit ? handleEdit() : handleAdd(value);
+                        isEdit ? handleEdit(value) : handleAdd(value);
                     }}
                 >
                     <div className="my-6">
@@ -76,7 +83,7 @@ const ModalData = ({ handleAdd, handleClose, isEdit, handleEdit }) => {
                                 rows="10"
                                 placeholder="Write your note here..."
                                 className="border-2 border-slate-300 p-3 outline-green-500 shadow-sm rounded-md"
-                                value={value.note}
+                                value={value.body}
                                 onInput={(e) =>
                                     setValue({
                                         ...value,

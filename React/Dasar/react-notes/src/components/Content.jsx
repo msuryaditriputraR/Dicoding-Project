@@ -11,6 +11,7 @@ export const Content = ({ isArchivePage }) => {
     const [notes, setNotes] = useState([]);
     const [archive, setArchive] = useState([]);
     const [deleteId, setDeleteId] = useState();
+    const [editId, setEditId] = useState();
     const [openModal, setOpenModal] = useState({
         modalData: false,
         modalDelete: false,
@@ -62,6 +63,14 @@ export const Content = ({ isArchivePage }) => {
         handleModal("modalData", false);
     };
 
+    const getDataById = (id) => {
+        const index = data.findIndex((d) => d.id === id);
+        return {
+            title: data[index].title,
+            body: data[index].body,
+        };
+    };
+
     return (
         <section className="py-8">
             <div className="container">
@@ -107,6 +116,7 @@ export const Content = ({ isArchivePage }) => {
                                     handleEdit={() => {
                                         handleModal("modalData", true);
                                         setIsEdit(true);
+                                        setEditId(note.id);
                                     }}
                                 />
                             ))
@@ -126,6 +136,7 @@ export const Content = ({ isArchivePage }) => {
                                 handleEdit={() => {
                                     handleModal("modalData", true);
                                     setIsEdit(true);
+                                    setEditId(note.id);
                                 }}
                             />
                         ))
@@ -144,6 +155,7 @@ export const Content = ({ isArchivePage }) => {
                         handleAdd={handleAdd}
                         isEdit={isEdit}
                         handleClose={() => handleModal("modalData", false)}
+                        data={() => getDataById(editId)}
                     />
                 )}
             </div>
