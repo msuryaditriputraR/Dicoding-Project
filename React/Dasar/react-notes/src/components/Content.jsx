@@ -71,6 +71,15 @@ export const Content = ({ isArchivePage }) => {
         };
     };
 
+    const handleEdit = ({ title, body }) => {
+        const index = data.findIndex((d) => d.id === editId);
+        data[index].title = title;
+        data[index].body = body;
+        data[index].updatedAt = new Date();
+        setData([...data]);
+        handleModal("modalData", false);
+    };
+
     return (
         <section className="py-8">
             <div className="container">
@@ -156,6 +165,7 @@ export const Content = ({ isArchivePage }) => {
                         isEdit={isEdit}
                         handleClose={() => handleModal("modalData", false)}
                         data={() => getDataById(editId)}
+                        handleEdit={handleEdit}
                     />
                 )}
             </div>
