@@ -5,6 +5,9 @@ import Footer from "./components/Footer";
 
 function App() {
     const [isArchivePage, setIsArchivePage] = useState(false);
+    const [keyword, setKeyword] = useState("");
+
+    const handleSearch = (value) => setKeyword(value);
 
     const handleSwitchPage = () => setIsArchivePage(!isArchivePage);
     return (
@@ -12,6 +15,8 @@ function App() {
             <Header
                 handleSwitchPage={handleSwitchPage}
                 isArchivePage={isArchivePage}
+                keyword={keyword}
+                handleSearch={handleSearch}
             />
             <main className="mt-28 lg:mt-16">
                 <Content isArchivePage={isArchivePage} />
