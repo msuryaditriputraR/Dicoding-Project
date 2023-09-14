@@ -16,7 +16,7 @@ const ModalData = ({ handleAdd, handleClose, isEdit, handleEdit, data }) => {
 
     return (
         <div className="fixed left-0 top-0 right-0 bottom-0 backdrop-blur-md bg-black/30 grid place-items-center z-50">
-            <article className="relative bg-white p-8 border border-slate-300 rounded-xl shadow-md min-w-[560px]">
+            <article className="relative bg-white p-8 border border-slate-300 rounded-xl shadow-md sm:w-3/4 h-fit max-w-[560px]">
                 <button
                     className="absolute w-8 h-8 bg-red-500 text-white text-2xl rounded-full flex items-center justify-center right-5 top-5"
                     title="Close Modal"
@@ -79,10 +79,8 @@ const ModalData = ({ handleAdd, handleClose, isEdit, handleEdit, data }) => {
                             </label>
                             <textarea
                                 id="body"
-                                cols="30"
-                                rows="10"
                                 placeholder="Write your note here..."
-                                className="border-2 border-slate-300 p-3 outline-green-500 shadow-sm rounded-md"
+                                className="border-2 border-slate-300 p-3 outline-green-500 shadow-sm rounded-md h-40 lg:h-48"
                                 value={value.body}
                                 onInput={(e) =>
                                     setValue({

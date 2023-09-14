@@ -97,10 +97,10 @@ export const Content = ({ isArchivePage, keyword }) => {
     };
 
     return (
-        <section className="py-8">
+        <section className="py-8 px-5">
             <div className="container">
                 <div className="flex justify-between">
-                    <h2 className="font-semibold text-3xl inline-flex items-center gap-x-1">
+                    <h2 className="font-semibold text-2xl sm:text-3xl inline-flex items-center gap-x-1">
                         {!isArchivePage ? (
                             <>
                                 My Notes
@@ -116,7 +116,7 @@ export const Content = ({ isArchivePage, keyword }) => {
 
                     {!isArchivePage && (
                         <button
-                            className="inline-flex items-center gap-x-1 bg-green-500 px-3 py-2 rounded-md text-white shadow-md"
+                            className="inline-flex items-center gap-x-1 bg-green-500 px-3 py-2 rounded-md text-white shadow-md text-sm sm:text-base"
                             onClick={() => {
                                 handleModal("modalData", true);
                                 setIsEdit(false);
@@ -126,7 +126,7 @@ export const Content = ({ isArchivePage, keyword }) => {
                         </button>
                     )}
                 </div>
-                <div className="grid grid-cols-3 gap-6 mt-10 items-start">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 items-start">
                     {!keyword ? (
                         isArchivePage ? (
                             archive.length > 0 ? (
