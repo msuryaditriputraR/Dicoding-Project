@@ -2,7 +2,7 @@ import { RiInboxUnarchiveLine } from "react-icons/ri";
 import { BiArchive, BiTrash, BiEdit } from "react-icons/bi";
 import showFormattedDate from "../utils/showFormattedDate";
 
-const NoteCard = ({ note, handleArchive, handleDelete }) => {
+const NoteCard = ({ note, handleArchive, handleDelete, handleEdit }) => {
     const { id, title, body, updatedAt, archived } = note;
 
     return (
@@ -29,6 +29,7 @@ const NoteCard = ({ note, handleArchive, handleDelete }) => {
                     className="w-[40px] h-[40px] flex items-center justify-center rounded-full text-white bg-yellow-500 shadow-md"
                     aria-label="Edit Note"
                     title="Edit Note"
+                    onClick={handleEdit}
                 >
                     <BiEdit />
                 </button>

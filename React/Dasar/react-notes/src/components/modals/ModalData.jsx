@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BiX } from "react-icons/bi";
 
-const ModalData = ({ handleAdd, handleClose }) => {
+const ModalData = ({ handleAdd, handleClose, isEdit, handleEdit }) => {
     const [value, setValue] = useState({
         title: "",
         body: "",
@@ -18,11 +18,13 @@ const ModalData = ({ handleAdd, handleClose }) => {
                 >
                     <BiX />
                 </button>
-                <h2 className="text-2xl font-semibold text-center">Add Note</h2>
+                <h2 className="text-2xl font-semibold text-center">
+                    {isEdit ? "Edit" : "Add"} Note
+                </h2>
                 <form
                     onSubmit={(e) => {
                         e.preventDefault();
-                        handleAdd(value);
+                        isEdit ? handleEdit() : handleAdd(value);
                     }}
                 >
                     <div className="my-6">
@@ -87,10 +89,12 @@ const ModalData = ({ handleAdd, handleClose }) => {
                     </div>
                     <div className="text-center">
                         <button
-                            className="bg-green-500 text-white py-2 px-6 uppercase font-semibold text-xl rounded-md"
+                            className={`text-white py-2 px-6 uppercase font-semibold text-xl rounded-md bg-${
+                                isEdit ? "yellow" : "green"
+                            }-500`}
                             type="submit"
                         >
-                            Add
+                            {isEdit ? "Edit" : "Add"}
                         </button>
                     </div>
                 </form>

@@ -12,10 +12,10 @@ export const Content = ({ isArchivePage }) => {
     const [archive, setArchive] = useState([]);
     const [deleteId, setDeleteId] = useState();
     const [openModal, setOpenModal] = useState({
-        modalAdd: false,
-        modalEdit: false,
+        modalData: false,
         modalDelete: false,
     });
+    const [isEdit, setIsEdit] = useState(false);
 
     useEffect(() => {
         setNotes(handleSortLatest(data.filter((d) => !d.archived)));
@@ -59,7 +59,7 @@ export const Content = ({ isArchivePage }) => {
         };
 
         setData([...data, newNote]);
-        handleModal("modalAdd", false);
+        handleModal("modalData", false);
     };
 
     return (
@@ -83,7 +83,10 @@ export const Content = ({ isArchivePage }) => {
                     {!isArchivePage && (
                         <button
                             className="inline-flex items-center gap-x-1 bg-green-500 px-3 py-2 rounded-md text-white shadow-md"
-                            onClick={() => handleModal("modalAdd", true)}
+                            onClick={() => {
+                                handleModal("modalData", true);
+                                setIsEdit(false);
+                            }}
                         >
                             <BiPlus className="text-xl" /> Add Note
                         </button>
@@ -101,6 +104,10 @@ export const Content = ({ isArchivePage }) => {
                                         handleModal("modalDelete", true);
                                         setDeleteId(note.id);
                                     }}
+                                    handleEdit={() => {
+                                        handleModal("modalData", true);
+                                        setIsEdit(true);
+                                    }}
                                 />
                             ))
                         ) : (
@@ -116,6 +123,10 @@ export const Content = ({ isArchivePage }) => {
                                     handleModal("modalDelete", true);
                                     setDeleteId(note.id);
                                 }}
+                                handleEdit={() => {
+                                    handleModal("modalData", true);
+                                    setIsEdit(true);
+                                }}
                             />
                         ))
                     ) : (
@@ -128,10 +139,11 @@ export const Content = ({ isArchivePage }) => {
                         handleDelete={handleDelete}
                     />
                 )}
-                {openModal.modalAdd && (
+                {openModal.modalData && (
                     <ModalData
                         handleAdd={handleAdd}
-                        handleClose={() => handleModal("modalAdd", false)}
+                        isEdit={isEdit}
+                        handleClose={() => handleModal("modalData", false)}
                     />
                 )}
             </div>
