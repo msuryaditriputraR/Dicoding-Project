@@ -53,7 +53,7 @@ body {
     margin-bottom: 80px;
 }
 
-.main-title h1 {
+.main-title h2 {
     display: inline-block;
     font-size: 2.5em;
     font-weight: 700;
@@ -62,7 +62,7 @@ body {
     position: relative;
 }
 
-.main-title h1::before {
+.main-title h2::before {
     content: "";
     position: absolute;
     left: 25%;
@@ -177,23 +177,15 @@ nav ul li .btn-start.activate {
     color: #555561;
     font-size: 75px;
     font-weight: bold;
-}
-
-.home .home-content h1:nth-child(1) {
-    flex: 100%;
-}
-
-.home .home-content h1:nth-child(2) {
-    margin-top: -25px;
+    line-height: 1.25;
 }
 
 .home .home-content p {
-    flex: 80%;
+    width: 42ch;
     color: #4b4b4b;
 }
 
 .home .home-content .btn-start-learn {
-    flex: 100%;
     margin-top: 45px;
 }
 
