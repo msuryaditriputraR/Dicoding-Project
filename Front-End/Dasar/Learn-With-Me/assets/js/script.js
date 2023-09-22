@@ -9,19 +9,20 @@ let itemPerSlide = 0,
     totalWidth;
 
 // Responsive breakPoint
-const responsive = [{
+const responsive = [
+    {
         breakPoint: {
             width: 0,
-            item: 1
-        }
+            item: 1,
+        },
     },
     {
         breakPoint: {
             width: 991,
-            item: 2
-        }
-    }
-]
+            item: 2,
+        },
+    },
+];
 
 function load() {
     // brp jumlah item
@@ -38,7 +39,7 @@ function start() {
 
     // ukuran slide
     for (let r = 0; r < slides.length; r++) {
-        slides[r].style.width = (containerWidth / itemPerSlide) - margin + "px";
+        slides[r].style.width = containerWidth / itemPerSlide - margin + "px";
         slides[r].style.margin = margin / 2 + "px";
         totalWidth += containerWidth / itemPerSlide;
     }
@@ -106,7 +107,6 @@ let timer = setInterval(autoPlay, 5000);
 
 window.onload = load();
 
-
 // Header Fixed
 window.onscroll = function () {
     const docScroll = document.documentElement.scrollTop;
@@ -119,7 +119,7 @@ window.onscroll = function () {
             document.querySelector("header").classList.remove("fixed");
         }
     }
-}
+};
 
 // navbar active links
 
@@ -133,13 +133,17 @@ a.forEach(function (e) {
         }
         e.classList.add("activate");
         nav.classList.toggle("show");
-
-    })
-})
+    });
+});
 
 // ham-burger
 const hamBurger = document.querySelector(".ham-burger");
 
 hamBurger.addEventListener("click", function () {
     document.querySelector("nav").classList.toggle("show");
-})
+});
+
+// Year Copyrights
+const year = document.getElementById("year");
+
+year.textContent = new Date().getFullYear();
