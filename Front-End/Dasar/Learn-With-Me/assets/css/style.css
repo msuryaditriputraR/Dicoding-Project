@@ -666,7 +666,7 @@ nav ul li .btn-start.activate {
 
 /* Footer */
 footer {
-    padding: 50px 15px;
+    padding-top: 50px;
     background-color: #14113b;
 }
 
@@ -702,6 +702,7 @@ footer .sosial a:hover {
     background-color: #14113b;
     border-top: 1px solid #333149;
     padding: 15px;
+    margin-top: 30px;
 }
 
 .copyright p {
