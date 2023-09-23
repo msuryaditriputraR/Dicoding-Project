@@ -1,13 +1,22 @@
 {
   "name": "money-tracker-app",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Money Tracker App is an app to create snapshot for every transaction that the user has doing",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:prod": "webpack --config webpack.prod.js",
+    "build:dev": "webpack serve --config webpack.dev.js",
+    "prettier:check": "prettier --check .",
+    "prettier:format": "prettier --write ."
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "HTML",
+    "sass",
+    "scss",
+    "bootstrap",
+    "webpack"
+  ],
+  "author": "https://github.com/msuryaditriputraR",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.20.2",
