@@ -27,10 +27,7 @@ const Add = {
     const formData = this._getFormData();
 
     if (this._validateFormData({ ...formData })) {
-      console.log('formData');
-      console.log(formData);
-
-      // this._goToDashboardPage();
+      this._goToDashboardPage();
     }
   },
 
@@ -62,7 +59,7 @@ const Add = {
     const reader = new FileReader();
     reader.onload = (event) => {
       evidenceImgChange.parentElement.classList.remove('d-none');
-      evidenceImgChange.style.backgroundImage = `url('${event.target.result}')`;
+      evidenceImgChange.style.backgroundImage = `url(${event.target.result})`;
     };
 
     reader.readAsDataURL(photo);

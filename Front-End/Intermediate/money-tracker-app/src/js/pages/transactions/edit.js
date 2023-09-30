@@ -45,10 +45,7 @@ const Edit = {
     const formData = this._getFormData();
 
     if (this._validateFormData({ ...formData })) {
-      console.log('formData');
-      console.log(formData);
-
-      // this._goToDashboardPage();
+      this._goToDashboardPage();
     }
   },
 
@@ -83,14 +80,14 @@ const Edit = {
       evidenceImg.classList.add('d-none');
       evidenceImgChange.classList.remove('d-none');
 
-      evidenceImgChange.style.backgroundImage = `url('${event.target.result}')`;
+      evidenceImgChange.style.backgroundImage = `url(${event.target.result})`;
     };
 
     reader.readAsDataURL(photo);
   },
 
   _populateTransactionToForm(transactionRecord = null) {
-    if (!(typeof transactionRecord === 'object')) {
+    if (typeof transactionRecord !== 'object') {
       throw new Error(
         `Parameter transactionRecord should be an object. The value is ${transactionRecord}`,
       );
