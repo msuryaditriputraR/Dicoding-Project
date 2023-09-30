@@ -17,7 +17,7 @@ const htmlWebpackPluginConfig = {
           <a class="nav-link" href="/">Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Add Record</a>
+          <a class="nav-link" href="/transactions/add.html">Add Record</a>
         </li>
         <li class="nav-item dropdown d-none" id="userLoggedMenu">
           <a class="nav-link dropdown-toggle text-nowrap" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

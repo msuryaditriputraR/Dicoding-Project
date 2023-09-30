@@ -75,7 +75,9 @@ const Dashboard = {
             <a class="btn btn-sm btn-primary" href="#">
               <i class="bi bi-eye-fill me-1"></i>Show
             </a>
-            <a class="btn btn-sm btn-warning" href="#">
+            <a class="btn btn-sm btn-warning" href="/transactions/edit.html?id=${
+              transactionRecord.id
+            }">
               <i class="bi bi-pen-fill me-1"></i>Edit
             </a>
             <a class="btn btn-sm btn-danger" href="#">
