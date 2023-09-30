@@ -21,7 +21,7 @@ const initPages = () => {
   }
 };
 
-window.addEventListener('DOMContentLoaded', async () => {
+window.addEventListener('DOMContentLoaded', () => {
   initPages();
 
   const route = detectRoute();
