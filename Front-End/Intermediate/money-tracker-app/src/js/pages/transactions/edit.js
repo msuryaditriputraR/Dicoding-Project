@@ -12,13 +12,20 @@ const Edit = {
       return;
     }
 
-    const fetchRecords = await fetch('/data/DATA.json');
-    const responseRecords = await fetchRecords.json();
-    const userTransactionsHistory = responseRecords.results.transactionsHistory;
+    try {
+      const fetchRecords = await fetch('/data/DATA.json');
+      const responseRecords = await fetchRecords.json();
+      const userTransactionsHistory = responseRecords.results.transactionsHistory;
 
-    const dataRecord = userTransactionsHistory.find((item) => item.id === transactionId);
+      const dataRecord = userTransactionsHistory.find((item) => item.id === transactionId);
 
-    this._populateTransactionToForm(dataRecord);
+      this._populateTransactionToForm(dataRecord);
+    } catch (error) {
+      document.body.innerHTML += `<div class="position-fixed bottom-0 end-0 alert alert-danger alert-dismissible fade show" role="alert">
+            Ada Kesalahan dalam Mengambil data
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>`;
+    }
   },
 
   _initialListener() {

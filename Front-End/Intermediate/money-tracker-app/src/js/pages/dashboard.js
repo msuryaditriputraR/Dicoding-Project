@@ -5,11 +5,18 @@ const Dashboard = {
   },
 
   async _initialData() {
-    const fetchRecords = await fetch('/data/DATA.json');
-    const responseRecords = await fetchRecords.json();
-    this._userTransactionsHistory = responseRecords.results.transactionsHistory;
-    this._populateTransactionsRecordToTable(this._userTransactionsHistory);
-    this._populateTransactionsDataToCard(this._userTransactionsHistory);
+    try {
+      const fetchRecords = await fetch('/data/DATA.json');
+      const responseRecords = await fetchRecords.json();
+      this._userTransactionsHistory = responseRecords.results.transactionsHistory;
+      this._populateTransactionsRecordToTable(this._userTransactionsHistory);
+      this._populateTransactionsDataToCard(this._userTransactionsHistory);
+    } catch (error) {
+      document.body.innerHTML += `<div class="position-fixed bottom-0 end-0 alert alert-danger alert-dismissible fade show" role="alert">
+            Ada Kesalahan dalam Mengambil data
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>`;
+    }
   },
 
   _initialListener() {
