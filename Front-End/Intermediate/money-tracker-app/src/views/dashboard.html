@@ -106,6 +106,56 @@
       </div>
     </div>
   </footer>
+
+  <!-- Transaction Detail Modal -->
+  <div class="modal fade" id="recordDetailModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Rincian Transaksi</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <img src="" id="imgDetailRecord" class="img-fluid" alt="Evidence of transaction" />
+          </div>
+          <h2>Rincian Transaksi</h2>
+          <table>
+            <tbody>
+              <tr>
+                <td class="fw-bold">Tipe</td>
+                <td class="fw-bold ms-3 me-1 d-inline-block">:</td>
+                <td id="typeDetailRecord"></td>
+              </tr>
+              <tr>
+                <td class="fw-bold">Nama</td>
+                <td class="fw-bold ms-3 me-1 d-inline-block">:</td>
+                <td id="nameDetailRecord"></td>
+              </tr>
+              <tr>
+                <td class="fw-bold">Tanggal</td>
+                <td class="fw-bold ms-3 me-1 d-inline-block">:</td>
+                <td id="dateDetailRecord"></td>
+              </tr>
+              <tr>
+                <td class="fw-bold">Jumlah Uang</td>
+                <td class="fw-bold ms-3 me-1 d-inline-block">:</td>
+                <td id="amountDetailRecord"></td>
+              </tr>
+              <tr>
+                <td class="fw-bold">Catatan</td>
+                <td class="fw-bold ms-3 me-1 d-inline-block">:</td>
+                <td id="noteDetailRecord"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

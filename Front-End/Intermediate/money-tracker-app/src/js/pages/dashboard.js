@@ -1,6 +1,7 @@
 const Dashboard = {
   async init() {
     await this._initialData();
+    this._initialListener();
   },
 
   async _initialData() {
@@ -9,6 +10,41 @@ const Dashboard = {
     this._userTransactionsHistory = responseRecords.results.transactionsHistory;
     this._populateTransactionsRecordToTable(this._userTransactionsHistory);
     this._populateTransactionsDataToCard(this._userTransactionsHistory);
+  },
+
+  _initialListener() {
+    const recordDetailModal = document.getElementById('recordDetailModal');
+    recordDetailModal.addEventListener('show.bs.modal', (event) => {
+      const modalTitle = recordDetailModal.querySelector('.modal-title');
+      modalTitle.focus();
+      const button = event.relatedTarget;
+      const dataRecord = this._userTransactionsHistory.find((item) => {
+        return item.id == button.dataset.recordId;
+      });
+      this._populateDetailTransactionToModal(dataRecord);
+    });
+  },
+
+  _populateDetailTransactionToModal(transactionRecord) {
+    if (typeof transactionRecord !== 'object') {
+      throw new Error(
+        `Parameter transactionRecord should be an object. The value is ${transactionRecord}`,
+      );
+    }
+    const imgDetailRecord = document.querySelector('#recordDetailModal #imgDetailRecord');
+    const typeDetailRecord = document.querySelector('#recordDetailModal #typeDetailRecord');
+    const nameDetailRecord = document.querySelector('#recordDetailModal #nameDetailRecord');
+    const dateDetailRecord = document.querySelector('#recordDetailModal #dateDetailRecord');
+    const amountDetailRecord = document.querySelector('#recordDetailModal #amountDetailRecord');
+    const descriptionDetailRecord = document.querySelector('#recordDetailModal #noteDetailRecord');
+    imgDetailRecord.setAttribute('src', transactionRecord.evidenceUrl);
+    imgDetailRecord.setAttribute('alt', transactionRecord.name);
+    typeDetailRecord.textContent =
+      transactionRecord.type === 'income' ? 'Pemasukan' : 'Pengeluaran';
+    nameDetailRecord.textContent = transactionRecord.name;
+    dateDetailRecord.textContent = transactionRecord.date;
+    amountDetailRecord.textContent = transactionRecord.amount;
+    descriptionDetailRecord.textContent = transactionRecord.description || '-';
   },
 
   _populateTransactionsDataToCard(transactionsHistory = null) {
@@ -72,9 +108,10 @@ const Dashboard = {
         <td>${transactionRecord.date}</td>
         <td>
           <div class="d-flex justify-content-center align-items-center gap-2">
-            <a class="btn btn-sm btn-primary" href="#">
+            <button class="btn btn-sm btn-primary"  data-bs-toggle="modal" data-bs-target="#recordDetailModal" 
+               data-record-id="${transactionRecord.id}">
               <i class="bi bi-eye-fill me-1"></i>Show
-            </a>
+            </button>
             <a class="btn btn-sm btn-warning" href="/transactions/edit.html?id=${
               transactionRecord.id
             }">
